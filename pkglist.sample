@@ -1,0 +1,13 @@
+devel/git@tiny
+editors/vim
+lang/python
+net/isc-dhcp44-client
+ports-mgmt/portlint
+ports-mgmt/poudriere-devel
+security/ca_root_nss
+security/sudo
+sysutils/monit
+sysutils/rpi-firmware
+sysutils/tmux
+sysutils/u-boot-rpi-arm64
+textproc/jq

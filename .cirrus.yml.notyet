@@ -1,0 +1,53 @@
+# XXX Eventually, we'll use Oracle/Ampere's cloud as a custom VM
+poudriere_task:
+  env:
+    GITHUB_TOKEN: ENCRYPTED[!a330bd1134ffd9c9fe13b7ab0fe920dc12c19d297efb0ac3c5492b3d7f1755fcdc05fdf702ad0748c07880abba88419d!]
+    FREEBSD_VERSION: 14.0-CURRENT
+    PORTS_BRANCH: main
+
+  freebsd_instance:
+    image_family: freebsd-14-0-snap
+
+  install_dependencies_script:
+    - pkg install -y git jq poudriere-devel qemu-user-static rpi-firmware u-boot-rpi-arm64
+    - service qemu_user_static onestart
+
+  xxx_patch_poudriere_script:
+    - fetch -o /usr/local/share/poudriere/common.sh https://raw.githubusercontent.com/jlduran/poudriere/quilt/src/share/poudriere/common.sh
+    - fetch -o /usr/local/share/poudriere/image.sh https://raw.githubusercontent.com/jlduran/poudriere/quilt/src/share/poudriere/image.sh
+    - fetch -o /usr/local/share/poudriere/image_firmware.sh https://raw.githubusercontent.com/jlduran/poudriere/quilt/src/share/poudriere/image_firmware.sh
+    - fetch -o /usr/local/share/poudriere/image_zfs.sh https://raw.githubusercontent.com/jlduran/poudriere/quilt/src/share/poudriere/image_zfs.sh
+
+  copy_sample_files_script:
+    - cp pkglist.sample pkglist
+    - cp -a cfg.sample cfg
+    - cp -a overlaydir.sample overlaydir
+
+  create_poudriere_jail_script:
+    - poudriere jail -c -j rpi -a arm64.aarch64 -v $FREEBSD_VERSION
+
+  create_ports_tree_script:
+    - poudriere ports -c -U https://git.freebsd.org/ports.git -B $PORTS_BRANCH -p latest
+
+  build_ports_script:
+    - sh .cirrus/preheat_poudriere.sh
+    - poudriere bulk -j rpi -p latest -f pkglist
+
+  create_rpi_image_script:
+    - poudriere image -t zfs -j rpi -s 4g -p latest -h rpi.home -n rpi -f pkglist -c overlaydir -B pre-script-zfs.sh
+
+  create_rpi_be_script:
+    - poudriere image -t zfs+send+be -j rpi -s 4g -p latest -h rpi.home -n rpi -f pkglist -c overlaydir -B pre-script-zfs.sh
+
+  prepare_artifacts_script:
+    - mkdir $CIRRUS_WORKING_DIR/rpi
+    - cp /usr/local/poudriere/data/images/rpi.img rpi
+    - cp /usr/local/poudriere/data/images/rpi.be.zfs rpi
+    - xz -9 rpi/rpi.img
+    - xz -9 rpi/rpi.be.zfs
+
+  upload_to_github_script:
+    - sh .cirrus/upload_to_github.sh
+
+  rpi_artifacts:
+    path: rpi/**
