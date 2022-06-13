@@ -172,8 +172,7 @@ zfs_prepare()
 	zpool create \
 	    -O mountpoint=/${ZFS_POOL_NAME} \
 	    -O canmount=noauto \
-	    -O checksum=sha512 \
-	    -O compression=on \
+	    -O compress=lz4 \
 	    -O atime=off \
 	    -t ${tmpzroot} \
 	    -R ${WRKDIR}/world ${zroot} /dev/${md} || exit
