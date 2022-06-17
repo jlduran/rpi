@@ -120,6 +120,7 @@ Configuration (`/etc` and `/usr/local/etc`) changes will be saved to `/cfg` (and
 - [ ] Adapt NanoBSD's update scripts
    - [ ] UFS (Files-UFS)
    - [ ] ZFS (Files-ZFS)
+- [ ] Test gunion(8) `/cfg` (unionfs works, but...)
 - [ ] Incremental ZFS snapshots
 - [ ] Clean-up pre-scripts
 - [ ] Improve sample directories and pkglist
