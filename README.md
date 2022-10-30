@@ -14,7 +14,8 @@ The system is mounted read-only to preserve the life of the SD card or EEPROM (i
 
 As a recommended best practice, we currently keep the base system with a UFS file system, and external drives with ZFS (similar to [schenkeveld10]).
 
-> **NOTE**: At the moment, poudriere needs a number of fixes.  In the meantime, use https://github.com/jlduran/poudriere/tree/quilt.
+> **Note** \
+> At the moment, poudriere needs a number of fixes.  In the meantime, use https://github.com/jlduran/poudriere/tree/quilt.
 
 ## Create a new image
 
@@ -120,7 +121,7 @@ Configuration (`/etc` and `/usr/local/etc`) changes will be saved to `/cfg` (and
 - [ ] Adapt NanoBSD's update scripts
    - [ ] UFS (Files-UFS)
    - [ ] ZFS (Files-ZFS)
-- [ ] Test gunion(8) `/cfg` (unionfs works, but...)
+- [ ] Test gunion(8) `/cfg` (unionfs works, but...)
 - [ ] Incremental ZFS snapshots
 - [ ] Clean-up pre-scripts
 - [ ] Improve sample directories and pkglist
