@@ -21,7 +21,7 @@ As a recommended best practice, we currently keep the base system with a UFS fil
 
 1. Create a poudriere jail with a `GENERIC-MMCCAM-NODEBUG` kernel
 
-       poudriere jail -c -j rpi -a arm64.aarch64 -m git+https -v main -K GENERIC-MMCCAM-NOEBUG
+       poudriere jail -c -j rpi -a arm64.aarch64 -m git+https -v main -K GENERIC-MMCCAM-NODEBUG
 
 2. Create a ports tree
 
