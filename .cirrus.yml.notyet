@@ -2,7 +2,6 @@
 poudriere_task:
   env:
     GITHUB_TOKEN: ENCRYPTED[!a330bd1134ffd9c9fe13b7ab0fe920dc12c19d297efb0ac3c5492b3d7f1755fcdc05fdf702ad0748c07880abba88419d!]
-    FREEBSD_VERSION: 14.0-CURRENT
     PORTS_BRANCH: main
 
   freebsd_instance:
@@ -24,7 +23,7 @@ poudriere_task:
     - cp -a overlaydir.sample overlaydir
 
   create_poudriere_jail_script:
-    - poudriere jail -c -j rpi -a arm64.aarch64 -v $FREEBSD_VERSION
+    - poudriere jail -c -j rpi -a arm64.aarch64 -m git+https -v main -K GENERIC-MMCCAM-NODEBUG
 
   create_ports_tree_script:
     - poudriere ports -c -U https://git.freebsd.org/ports.git -B $PORTS_BRANCH -p latest
