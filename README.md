@@ -42,12 +42,12 @@ As a recommended best practice, we currently keep the base system with a UFS fil
 
 5. Create the image
 
-       poudriere image -t firmware -j rpi -s 8g -p latest -h raspberrypi -n raspberrypi \
+       poudriere image -t firmware -j rpi -s 10g -p latest -h raspberrypi -n raspberrypi \
            -f pkglist -c overlaydir -B pre-script-ufs.sh
 
    If ZFS is desired
 
-       poudriere image -t zfs -j rpi -s 4g -p latest -h raspberrypi -n raspberrypi \
+       poudriere image -t zfs -j rpi -s 5g -p latest -h raspberrypi -n raspberrypi \
            -f pkglist -c overlaydir -B pre-script-zfs.sh
 
 6. Optionally, test the image
@@ -79,7 +79,7 @@ As a recommended best practice, we currently keep the base system with a UFS fil
 
 5. Create a boot environment (BE)
 
-       poudriere image -t zfs+send+be -j rpi -s 4g -p latest -h raspberrypi -n raspberrypi \
+       poudriere image -t zfs+send+be -j rpi -s 5g -p latest -h raspberrypi -n raspberrypi \
            -f pkglist -c overlaydir -B pre-script-zfs.sh
 
 6. Test the BE image:
