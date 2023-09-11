@@ -209,9 +209,6 @@ firmware_build()
 		EOSWAP
 	fi
 
-	# Symbolic link to /home
-	ln -sf /usr/home ${WRKDIR}/world/home
-
 	# NanoBSD-like configuration
 	_ufs_setup_nanobsd_etc
 	_ufs_populate_cfg
@@ -300,9 +297,6 @@ rawfirmware_build()
 		/dev/gpt/swap0.eli	none		swap	sw,late		0	0
 		EOSWAP
 	fi
-
-	# Symbolic link to /home
-	ln -sf /usr/home ${WRKDIR}/world/home
 
 	# NanoBSD-like configuration
 	_ufs_setup_nanobsd_etc

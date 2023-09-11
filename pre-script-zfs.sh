@@ -183,10 +183,10 @@ zfs_prepare()
 		msg "Creating ZFS Datasets"
 		zfs create -o mountpoint=none ${zroot}/${ZFS_BEROOT_NAME}
 		zfs create -o mountpoint=/ ${zroot}/${ZFS_BEROOT_NAME}/${ZFS_BOOTFS_NAME}
+		zfs create -o mountpoint=/home ${zroot}/home
 		# Put /tmp on the /var ramdisk
 		#zfs create -o mountpoint=/tmp -o exec=on -o setuid=off ${zroot}/tmp
 		zfs create -o mountpoint=/usr -o canmount=off ${zroot}/usr
-		zfs create ${zroot}/usr/home
 		zfs create -o setuid=off ${zroot}/usr/ports
 		zfs create ${zroot}/usr/src
 		zfs create ${zroot}/usr/obj
@@ -220,9 +220,6 @@ zfs_build()
 			/dev/gpt/swap0.eli	none		swap	sw,late			0	0
 			EOSWAP
 		fi
-
-		# Symbolic link to /home
-		ln -sf /usr/home ${WRKDIR}/world/home
 
 		# NanoBSD-like configuration
 		_zfs_setup_nanobsd_etc
