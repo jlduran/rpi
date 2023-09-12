@@ -152,8 +152,6 @@ _zfs_setup_nanobsd_etc()
 	mkdir -p etc/local
 
 	# Add some first boot empty files
-	touch etc/opiekeys
-	chmod 0600 etc/opiekeys
 	touch etc/zfs/exports
 
 	# Remove poudriere-populated rc.conf
