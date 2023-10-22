@@ -38,7 +38,7 @@ As a recommended best practice, we currently keep the base system with a UFS fil
 
 4. Build the ports
 
-       poudriere bulk -j rpi -p latest -f pkglist
+       poudriere bulk -j rpi -b latest -p latest -f pkglist
 
 5. Create the image
 
@@ -75,7 +75,7 @@ As a recommended best practice, we currently keep the base system with a UFS fil
 
 4. Build the ports
 
-       poudriere bulk -j rpi -p latest -f pkglist
+       poudriere bulk -j rpi -b latest -p latest -f pkglist
 
 5. Create a boot environment (BE)
 

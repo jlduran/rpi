@@ -29,8 +29,7 @@ poudriere_task:
     - poudriere ports -c -U https://git.freebsd.org/ports.git -B $PORTS_BRANCH -p latest
 
   build_ports_script:
-    - sh .cirrus/preheat_poudriere.sh
-    - poudriere bulk -j rpi -p latest -f pkglist
+    - poudriere bulk -j rpi -b latest -p latest -f pkglist
 
   create_rpi_image_script:
     - poudriere image -t zfs -j rpi -s 4g -p latest -h rpi.home -n rpi -f pkglist -c overlaydir -B pre-script-zfs.sh
