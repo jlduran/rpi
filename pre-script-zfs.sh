@@ -145,7 +145,7 @@ _zfs_setup_nanobsd_etc()
 	sysrc -f etc/defaults/vendor.conf "entropy_file=NO"
 	sysrc -f etc/defaults/vendor.conf "entropy_dir=NO"
 
-	echo "${ZFS_POOL_NAME}/cfg		/cfg		zfs	rw,noatime,noauto	0	0" >> etc/fstab
+	echo "${ZFS_POOL_NAME}/cfg		/cfg			zfs	rw,noatime,noauto	0 0" >> etc/fstab
 	mkdir -p cfg
 
 	# Create directory for eventual /usr/local/etc contents
@@ -210,12 +210,12 @@ zfs_build()
 {
 	if [ -z "${ORIGIN_IMAGE}" ]; then
 		cat >> ${WRKDIR}/world/etc/fstab <<-EOEFI
-		# Device		Mountpoint	FStype	Options			Dump	Pass#
-		/dev/gpt/efiboot0	/boot/efi	msdosfs	rw,noatime,noauto	2	2
+		# Device		Mountpoint		FStype	Options		Dump Pass#
+		/dev/gpt/efiboot0	/boot/efi		msdosfs	rw,noatime,noauto	2 2
 		EOEFI
 		if [ -n "${SWAPSIZE}" ] && [ "${SWAPSIZE}" != "0" ]; then
 			cat >> ${WRKDIR}/world/etc/fstab <<-EOSWAP
-			/dev/gpt/swap0.eli	none		swap	sw,late			0	0
+			/dev/gpt/swap0.eli	none			swap	sw,late		0 0
 			EOSWAP
 		fi
 

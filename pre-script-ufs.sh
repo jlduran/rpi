@@ -147,9 +147,9 @@ _ufs_setup_nanobsd_etc()
 	# save config file for scripts
 	echo "NANO_DRIVE=gpt/${IMAGENAME}" > etc/nanobsd.conf
 
-	echo "/dev/gpt/${IMAGENAME}1	/		ufs	ro			1	1" >> etc/fstab
-	echo "/dev/gpt/cfg		/cfg		ufs	rw,noatime,noauto	2	2" >> etc/fstab
-	echo "/dev/gpt/data		/data		ufs	rw,noatime		2	2" >> etc/fstab
+	echo "/dev/gpt/${IMAGENAME}1	/			ufs	ro		1 1" >> etc/fstab
+	echo "/dev/gpt/cfg	/cfg			ufs	rw,noatime,noauto	2 2" >> etc/fstab
+	echo "/dev/gpt/data	/data			ufs	rw,noatime	2 2" >> etc/fstab
 	mkdir -p cfg
 	mkdir -p data
 
@@ -198,12 +198,12 @@ firmware_build()
 	# Then we need to replace /tmp by a symlink to /var/tmp
 	# For more information, read /etc/rc.initdiskless
 	cat >> ${WRKDIR}/world/etc/fstab <<-EOEFI
-		# Device		Mountpoint	FStype	Options			Dump	Pass#
-		/dev/gpt/efiboot0	/boot/efi	msdosfs	rw,noatime,noauto	2	2
+		# Device		Mountpoint		FStype	Options		Dump Pass#
+		/dev/gpt/efiboot0	/boot/efi		msdosfs	rw,noatime,noauto	2 2
 	EOEFI
 	if [ -n "${SWAPSIZE}" ] && [ "${SWAPSIZE}" != "0" ]; then
 		cat >> ${WRKDIR}/world/etc/fstab <<-EOSWAP
-		/dev/gpt/swap0.eli	none		swap	sw,late		0	0
+		/dev/gpt/swap0.eli	none			swap	sw,late		0 0
 		EOSWAP
 	fi
 
@@ -287,12 +287,12 @@ rawfirmware_build()
 	# Then we need to replace /tmp by a symlink to /var/tmp
 	# For more information, read /etc/rc.initdiskless
 	cat >> ${WRKDIR}/world/etc/fstab <<-EOEFI
-		# Device		Mountpoint	FStype	Options			Dump	Pass#
-		/dev/gpt/efiboot0	/boot/efi	msdosfs	rw,noatime,noauto	2	2
+		# Device		Mountpoint		FStype	Options		Dump Pass#
+		/dev/gpt/efiboot0	/boot/efi		msdosfs	rw,noatime,noauto	2 2
 	EOEFI
 	if [ -n "${SWAPSIZE}" ] && [ "${SWAPSIZE}" != "0" ]; then
 		cat >> ${WRKDIR}/world/etc/fstab <<-EOSWAP
-		/dev/gpt/swap0.eli	none		swap	sw,late		0	0
+		/dev/gpt/swap0.eli	none			swap	sw,late		0 0
 		EOSWAP
 	fi
 
