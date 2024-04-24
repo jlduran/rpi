@@ -14,9 +14,6 @@ The system is mounted read-only to preserve the life of the SD card or EEPROM (i
 
 As a recommended best practice, we currently keep the base system with a UFS file system, and external drives with ZFS (similar to [schenkeveld10]).
 
-> [!NOTE]
-> At the moment, poudriere needs a number of fixes.  In the meantime, use https://github.com/jlduran/poudriere/tree/quilt.
-
 ## Create a new image
 
 1. Create a poudriere jail with a `GENERIC-MMCCAM-NODEBUG` kernel
