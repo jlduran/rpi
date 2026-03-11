@@ -1,13 +1,5 @@
-devel/git@tiny
-editors/vim
-lang/python
-net/dhcpcd
-ports-mgmt/portlint
-ports-mgmt/poudriere-devel
-security/ca_root_nss
-security/sudo
-sysutils/monit
+# Select the USB WiFi module firmware
+# net/wifi-firmware-mt7601u-kmod
+sysutils/podman-suite
 sysutils/rpi-firmware
-sysutils/tmux
 sysutils/u-boot-rpi-arm64
-textproc/jq

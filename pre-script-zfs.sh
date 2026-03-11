@@ -148,6 +148,9 @@ _zfs_setup_nanobsd_etc()
 	echo "${ZFS_POOL_NAME}/cfg		/cfg			zfs	rw,noatime,noauto	0 0" >> etc/fstab
 	mkdir -p cfg
 
+	# Podman's container restart policy
+	echo "fdesc		/dev/fd			fdescfs	rw		0 0" >> etc/fstab
+
 	# Create directory for eventual /usr/local/etc contents
 	mkdir -p etc/local
 
@@ -196,6 +199,8 @@ zfs_prepare()
 		#zfs create -o atime=on ${zroot}/var/mail
 		#zfs create -o setuid=off ${zroot}/var/tmp
 		#chmod 1777 ${WRKDIR}/world/tmp ${WRKDIR}/world/var/tmp
+		# Podman containers dataset
+		zfs create -o mountpoint=/var/db/containers ${zroot}/containers
 
 		zfs create -o mountpoint=/data ${zroot}/data
 

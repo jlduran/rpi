@@ -153,6 +153,9 @@ _ufs_setup_nanobsd_etc()
 	mkdir -p cfg
 	mkdir -p data
 
+	# Podman's container restart policy
+	echo "fdesc		/dev/fd			fdescfs	rw		0 0" >> etc/fstab
+
 	# Create directory for eventual /usr/local/etc contents
 	mkdir -p etc/local
 

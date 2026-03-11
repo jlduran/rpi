@@ -27,9 +27,7 @@ As a recommended best practice, we currently keep the base system with a UFS fil
 3. Create/modify the list of ports to be included
 
        cat > pkglist <<EOF
-       editors/vim
-       lang/python
-       security/sudo
+       sysutils/podman-suite
        ...
        EOF
 
@@ -121,7 +119,6 @@ Configuration (`/etc` and `/usr/local/etc`) changes will be saved to `/cfg` (and
 - [ ] Test gunion(8) `/cfg` (unionfs works, but...)
 - [ ] Incremental ZFS snapshots
 - [ ] Clean-up pre-scripts
-- [ ] Improve sample directories and pkglist
 - [ ] Improve documentation
 
 [NanoBSD]: https://papers.freebsd.org/2005/phk-nanobsd/
