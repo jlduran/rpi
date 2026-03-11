@@ -14,6 +14,13 @@ The system is mounted read-only to preserve the life of the SD card or EEPROM (i
 
 As a recommended best practice, we currently keep the base system with a UFS file system, and external drives with ZFS (similar to [schenkeveld10]).
 
+## Prerequisites
+
+The builder must have the following packages pre-installed:
+
+- sysutils/rpi-firmware
+- sysutils/u-boot-rpi-arm64
+
 ## Create a new image
 
 1. Create a poudriere jail with a `GENERIC-MMCCAM-NODEBUG` kernel
