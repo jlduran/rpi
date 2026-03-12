@@ -214,7 +214,7 @@ zfs_prepare()
 zfs_build()
 {
 	if [ -z "${ORIGIN_IMAGE}" ]; then
-		cat >> ${WRKDIR}/world/etc/fstab <<-EOEFI
+		cat > ${WRKDIR}/world/etc/fstab <<-EOEFI
 		# Device		Mountpoint		FStype	Options		Dump Pass#
 		/dev/gpt/efiboot0	/boot/efi		msdosfs	rw,noatime,noauto	2 2
 		EOEFI

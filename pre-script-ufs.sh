@@ -200,7 +200,7 @@ firmware_build()
 	# Because rootfs is readonly, it creates ramdisks for /etc and /var+/tmp
 	# Then we need to replace /tmp by a symlink to /var/tmp
 	# For more information, read /etc/rc.initdiskless
-	cat >> ${WRKDIR}/world/etc/fstab <<-EOEFI
+	cat > ${WRKDIR}/world/etc/fstab <<-EOEFI
 		# Device		Mountpoint		FStype	Options		Dump Pass#
 		/dev/gpt/efiboot0	/boot/efi		msdosfs	rw,noatime,noauto	2 2
 	EOEFI
