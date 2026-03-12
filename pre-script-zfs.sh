@@ -40,7 +40,7 @@ make_msdos_file() {
 	cp "${loader}" "${stagedir}/EFI/FreeBSD/loader.efi"
 
 	# Copy over dtb and firmware files
-	cp -R /usr/local/share/rpi-firmware/* ${stagedir}
+	cp -a /usr/local/share/rpi-firmware/* ${stagedir}
 
 	# Remove unneeded files
 	rm -f "${stagedir}"/config_*
@@ -49,7 +49,7 @@ make_msdos_file() {
 	cp "${SAVED_PWD}/config.txt" "${stagedir}"
 
 	# Copy u-boot
-	cp /usr/local/share/u-boot/u-boot-rpi-arm64/u-boot.bin ${stagedir}
+	cp -p /usr/local/share/u-boot/u-boot-qemu-arm64/u-boot.bin ${stagedir}
 
 	makefs -t msdos \
 	    -o fat_type=${fatbits} \
