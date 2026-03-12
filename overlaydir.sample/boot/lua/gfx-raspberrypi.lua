@@ -14,7 +14,7 @@ return {
 		    "        '~'\027[m",
 		},
 		requires_color = true,
-		shift = {x = 2, y = 6},
+		shift = {x = 6, y = 1},
 		image = "/boot/images/raspberrypi-logo.png",
 		image_rl = 15
 	}
