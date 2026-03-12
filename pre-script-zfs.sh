@@ -201,6 +201,8 @@ zfs_prepare()
 		#chmod 1777 ${WRKDIR}/world/tmp ${WRKDIR}/world/var/tmp
 		# Podman containers dataset
 		zfs create -o mountpoint=/var/db/containers ${zroot}/containers
+		# Linux compatibility
+		zfs create -o mountpoint=/compat ${zroot}/compat
 
 		zfs create -o mountpoint=/data ${zroot}/data
 
