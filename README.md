@@ -54,11 +54,11 @@ The builder must have the following packages pre-installed:
 
 6. Optionally, test the image
 
-       qemu-system-aarch64 -m 4096M -cpu cortex-a72 -M virt \
-           -bios /usr/local/share/u-boot/u-boot-qemu-arm64/u-boot.bin \
-           -serial telnet::4444,server -nographic \
-           -drive if=none,file=/usr/local/poudriere/data/images/raspberrypi.img,id=hd0 \
-           -device virtio-blk-device,drive=hd0
+       qemu-system-aarch64 -m 4G -cpu cortex-a72 -machine virt -smp cpus=4 \
+           -drive if=pflash,format=raw,file=/tmp/efi.fd,readonly=on \
+           -drive if=pflash,format=raw,file=/tmp/efi_vars.fd \
+           -drive if=virtio,format=raw,file=/usr/local/poudriere/data/images/raspberrypi.img \
+           -serial telnet::4444,server -nographic
 
 7. Copy the image to the SD card
 
@@ -92,11 +92,11 @@ The builder must have the following packages pre-installed:
 
    2. Start a VM with the old image
 
-          qemu-system-aarch64 -m 4096M -cpu cortex-a72 -M virt \
-              -bios /usr/local/share/u-boot/u-boot-qemu-arm64/u-boot.bin \
-              -serial telnet::4444,server -nographic \
-              -drive if=none,file=/usr/local/poudriere/data/images/raspberrypi.img,id=hd0 \
-              -device virtio-blk-device,drive=hd0
+           qemu-system-aarch64 -m 4G -cpu cortex-a72 -machine virt -smp cpus=4 \
+               -drive if=pflash,format=raw,file=/tmp/efi.fd,readonly=on \
+               -drive if=pflash,format=raw,file=/tmp/efi_vars.fd \
+               -drive if=virtio,format=raw,file=/usr/local/poudriere/data/images/raspberrypi.img \
+               -serial telnet::4444,server -nographic
 
    3. From the Raspberry Pi, import the new BE
 
